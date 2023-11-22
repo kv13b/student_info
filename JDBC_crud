@@ -1,0 +1,26 @@
+import java.sql.*;
+
+public class JDBC_Select {
+	//fetch the data from oracle db
+	public static void main(String[] args) {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","karthik");
+			Statement smt=con.createStatement();
+			ResultSet rs=smt.executeQuery("select * from emp");
+//ResultSet is part of the (JDBC) API and is used to represent the result set of a database query
+			while(rs.next()) {
+				int eid=rs.getInt(1);
+				String en=rs.getString(2);
+				double es=rs.getDouble(3);
+				System.out.println("Emp id "+eid);
+				System.out.println("Emp id "+en);
+				System.out.println("Emp id "+es);
+			}
+
+	}catch(Exception e) {
+		System.out.println(e);
+	}
+
+}
+}
